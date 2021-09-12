@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Name</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Price</th>
+                <th scope="col">TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for elem in data %}
+            <!-- TODO: Loop through the database entries to display them in this table -->
+                <tr>
+                    <td>{{ elem.symbol }}</td>
+                    <td>{{ elem.name }}</td>
+                    <td>{{ elem.shares }}</td>
+                    <td>{{ elem.price | usd }}</td>
+                    <td>{{ elem.total | usd }}</td>
+                </tr>
+            {% endfor %}
+                <tr>
+                    <td>CASH</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ cash | usd }}</td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th scope="row">
+                        {{ (cash + total) | usd }}
+                    </th>
+                </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
